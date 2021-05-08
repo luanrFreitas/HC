@@ -53,7 +53,7 @@ namespace HustleCastle.Controllers
             return View("Editar", tutorial);
         }
 
-        // POST: TutorialsController/Edit/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Tutorial tutorial)
