@@ -14,6 +14,7 @@
   <ItemGroup>
     <Reference Include="GoogleSheetsDatabase">
       <HintPath>..\GoogleSheetsDatabase\bin\Debug\netstandard2.0\GoogleSheetsDatabase.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
