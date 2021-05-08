@@ -1,0 +1,100 @@
+﻿@model HustleCastle.Models.Tutorial
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h4>Edição de Tutorial</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Save" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="ID" type="hidden" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <textarea asp-for="Text" class="form-control ckeditor">  </textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script src="~/lib/ckeditor5/build/ckeditor.js"></script>
+<script>ClassicEditor
+			.create( document.querySelector( '.ckeditor' ), {
+
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'undo',
+						'redo',
+						'bold',
+						'italic',
+						'underline',
+						'|',
+						'fontColor',
+						'fontBackgroundColor',
+						'fontFamily',
+						'fontSize',
+						'|',
+						'alignment',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'blockQuote',
+						'link',
+						'insertTable',
+						'mediaEmbed'
+					]
+				},
+				language: 'pt-br',
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+				licenseKey: '',
+
+
+			} )
+			.then( editor => {
+				window.editor = editor;
+
+
+
+
+
+
+
+
+			} )
+			.catch( error => {
+				console.error( 'Oops, something went wrong!' );
+				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+				console.warn( 'Build id: tmwf08m4jswx-1l10liszcq3o' );
+				console.error( error );
+			} );</script>
