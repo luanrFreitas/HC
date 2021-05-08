@@ -34,6 +34,10 @@
       <HintPath>lib\GoogleSheetsDatabase.dll</HintPath>
       <Private>true</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
