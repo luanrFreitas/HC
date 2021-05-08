@@ -5,39 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.51.0" />
+    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.51.0.2272" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.14" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Google.Apis">
-      <HintPath>lib\Google.Apis.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Auth">
-      <HintPath>lib\Google.Apis.Auth.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices">
-      <HintPath>lib\Google.Apis.Auth.PlatformServices.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Core">
-      <HintPath>lib\Google.Apis.Core.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="Google.Apis.Sheets.v4">
-      <HintPath>lib\Google.Apis.Sheets.v4.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="GoogleSheetsDatabase">
-      <HintPath>lib\GoogleSheetsDatabase.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>

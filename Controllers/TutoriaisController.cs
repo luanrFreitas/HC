@@ -1,5 +1,4 @@
-﻿using GoogleSheetsDatabase;
-using HustleCastle.Models;
+﻿using HustleCastle.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using HustleCastle.Data;
 
 namespace HustleCastle.Controllers
 {
