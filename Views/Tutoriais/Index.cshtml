@@ -9,39 +9,19 @@
 <p>
     <a asp-action="Criar" class="btn btn-primary">Novo Tutorial</a>
 </p>
-<table class="table">
+<table class="table text-center">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new {  id=item.ID  }) |
-                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.ID }) |
-               @* @Html.ActionLink("Excluir", "Excluir", new { id = item.ID })*@
+                @Html.ActionLink(item.Title, "Detalhes", new { id = item.ID })
             </td>
         </tr>
 }
