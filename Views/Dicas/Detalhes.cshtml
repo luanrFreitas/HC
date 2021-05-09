@@ -1,0 +1,29 @@
+﻿@model HustleCastle.Models.Tutorial
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+<div class="card">
+    <div class="card-header text-center">
+        <h4>@Model.Title</h4>
+    </div>
+    <div class="card-body">
+        <div>
+            @Html.Raw(Model.Text)
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="float-left">
+            Autor: @Model.Author
+        </div>
+        <div class="float-right">
+            Data de criação: @Model.CreatedAt
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<br />
+<div>
+    <a class="btn btn-primary" asp-action="Index">Voltar</a>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.ID }, new { @class = "btn btn-success" })
+</div>

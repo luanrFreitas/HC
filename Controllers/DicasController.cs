@@ -11,12 +11,12 @@ using HustleCastle.Data;
 
 namespace HustleCastle.Controllers
 {
-    public class TutoriaisController : Controller
+    public class DicasController : Controller
     {
         private readonly SheetsDatabase sheetsDatabase;
         private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public TutoriaisController(IWebHostEnvironment hostingEnvironment)
+        public DicasController(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
             var a = Path.Combine(_hostingEnvironment.ContentRootPath, "client_secret.json");
