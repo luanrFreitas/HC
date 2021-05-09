@@ -11,7 +11,7 @@ using HustleCastle.Data;
 
 namespace HustleCastle.Controllers
 {
-    public class DicasController : Controller
+    public class DicasController : BaseController
     {
         private readonly SheetsDatabase sheetsDatabase;
         private readonly IWebHostEnvironment _hostingEnvironment;
