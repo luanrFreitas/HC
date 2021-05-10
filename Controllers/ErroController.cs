@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace HustleCastle.Controllers
 {
-    public class BaseController : Controller
+    public class ErroController : Controller
     {
-       
-
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

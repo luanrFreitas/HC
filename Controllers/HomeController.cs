@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HustleCastle.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -27,13 +27,14 @@ namespace HustleCastle.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            _logger.LogError(HttpContext.TraceIdentifier);
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         public IActionResult Log()
         {
             _logger.LogDebug("Luan Acessou o Log");
-            return Content("1");
+            return Content("2");
         }
     }
 }

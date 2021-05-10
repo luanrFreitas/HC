@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HustleCastle.Controllers
 {
-    public class MembrosController : BaseController
+    public class MembrosController : Controller
     {
         public IActionResult Index()
         {
