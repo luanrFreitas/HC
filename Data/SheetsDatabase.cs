@@ -3,14 +3,14 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using HustleCastle.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
-using Data = Google.Apis.Sheets.v4.Data;
+using GData = Google.Apis.Sheets.v4.Data;
 
 namespace HustleCastle.Data
 {
@@ -138,28 +138,21 @@ namespace HustleCastle.Data
 
         public void Delete<T>(int id)
         {
-            List<Google.Apis.Sheets.v4.Data.DataFilter> dataFilters = new List<Google.Apis.Sheets.v4.Data.DataFilter>();
-            bool includeGridData = false;
+            Backup<T>();
 
-            Google.Apis.Sheets.v4.Data.GetSpreadsheetByDataFilterRequest requestBody = new Google.Apis.Sheets.v4.Data.GetSpreadsheetByDataFilterRequest();
-            requestBody.DataFilters = dataFilters;
-            requestBody.IncludeGridData = includeGridData;
+            int sheetId = GetSheetIdByNameClass(typeof(T).Name);
 
-            SpreadsheetsResource.GetByDataFilterRequest request = Service.Spreadsheets.GetByDataFilter(requestBody, SpreadsheetId);
-            Google.Apis.Sheets.v4.Data.Spreadsheet response = request.Execute();
-
-            var sheetID = response.Sheets.Where(x => x.Properties.Title == typeof(T).Name).FirstOrDefault().Properties.SheetId;
-            //DELETE THIS ROW
+           //DELETE THIS ROW
             Request RequestBody = new Request()
             {
                 DeleteDimension = new DeleteDimensionRequest()
                 {
                     Range = new DimensionRange()
                     {
-                        SheetId = sheetID,
+                        SheetId = sheetId,
                         Dimension = "ROWS",
-                        StartIndex = id,
-                        EndIndex = id + 1
+                        StartIndex = id -1,
+                        EndIndex = id
                     }
                 }
             };
@@ -179,6 +172,34 @@ namespace HustleCastle.Data
 
             //var deleteRequest = Service.Spreadsheets.Values.Clear(requestBody, SpreadsheetId, range);
             //var deleteReponse = deleteRequest.Execute();
+        }
+
+        public void Backup<T>()
+        {
+            int sheetId = GetSheetIdByNameClass(typeof(T).Name);
+
+            CopySheetToAnotherSpreadsheetRequest requestBody = new CopySheetToAnotherSpreadsheetRequest();
+            requestBody.DestinationSpreadsheetId = SpreadsheetId;
+
+            SpreadsheetsResource.SheetsResource.CopyToRequest request = Service.Spreadsheets.Sheets.CopyTo(requestBody, SpreadsheetId, sheetId);
+
+            // To execute asynchronously in an async method, replace `request.Execute()` as shown:
+            SheetProperties response = request.Execute();
+            // Data.SheetProperties response = await request.ExecuteAsync();
+
+            // TODO: Change code below to process the `response` object:
+            var json = JsonConvert.SerializeObject(response);
+        }
+
+        private int GetSheetIdByNameClass(string nameClass)
+        {
+            GetSpreadsheetByDataFilterRequest requestBody = new GetSpreadsheetByDataFilterRequest();
+            requestBody.DataFilters = new List<DataFilter>();
+            requestBody.IncludeGridData = false;
+
+            SpreadsheetsResource.GetByDataFilterRequest request = Service.Spreadsheets.GetByDataFilter(requestBody, SpreadsheetId);
+            Spreadsheet response = request.Execute();
+            return  (Int32)response.Sheets.Where(x => x.Properties.Title == nameClass).FirstOrDefault().Properties.SheetId;
         }
 
     }

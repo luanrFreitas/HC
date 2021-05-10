@@ -24,6 +24,11 @@
 </div>
 <br />
 <div>
-    <a class="btn btn-primary" asp-action="Index">Voltar</a>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.ID }, new { @class = "btn btn-success" })
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+    @if (User.Identity.Name == Model.Author)
+    {
+        <a asp-action="Excluir" asp-route-id="@Model.ID" class="btn btn-danger">Excluir</a>
+        <a asp-action="Editar" asp-route-id="@Model.ID" class="btn btn-success">Editar</a>
+    }
+
 </div>
