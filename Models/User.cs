@@ -11,6 +11,8 @@ namespace HustleCastle.Models
         public int ID { get; set; }
         [Display(Name ="Usuário")]
         [Required(ErrorMessage ="O usuário é obrigatório")]
+        [RegularExpression(@"^[a-zA-Z0-9 ./_()-]+$", ErrorMessage = "O nome de usuário não pode ter caracteres especiais")]
+        [MaxLength(12,ErrorMessage ="O Tamanho máximo são 12 caracteres")]
         public string Username { get; set; }
 
         [DataType(DataType.Password)]
