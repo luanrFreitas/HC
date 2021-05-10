@@ -114,9 +114,8 @@ namespace HustleCastle.Controllers
 
         public IActionResult Log()
         {
-           sheetsDatabase.Delete<User>(5);
-            _logger.LogDebug("Luan Acessou o Log");
-            return Content("2");
+
+            return Content("3");
         }
     }
 }

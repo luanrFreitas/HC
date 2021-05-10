@@ -15,29 +15,23 @@ namespace HustleCastle.Controllers
     [Authorize]
     public class DicasController : Controller
     {
-        private readonly SheetsDatabase sheetsDatabase;
-        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly SheetsDatabase _sheetsDatabase;
 
-        public DicasController(IWebHostEnvironment hostingEnvironment)
+        public DicasController(SheetsDatabase sheetsDatabase)
         {
-            _hostingEnvironment = hostingEnvironment;
-            var a = Path.Combine(_hostingEnvironment.ContentRootPath, "client_secret.json");
-            using (var stream = new FileStream(a, FileMode.Open, FileAccess.Read))
-            {
-                sheetsDatabase = new SheetsDatabase("Teste", "1VKcGHaNzCU6dH9MNMEnlxfcb5sX7fM2t1G8OblestPg", stream);
-            }
+            _sheetsDatabase = sheetsDatabase;
         }
         [AllowAnonymous]
         public ActionResult Index()
         {
-            IList<Tutorial> tutorials = sheetsDatabase.GetAll<Tutorial>();
+            IList<Tutorial> tutorials = _sheetsDatabase.GetAll<Tutorial>();
             return View(tutorials);
         }
 
         [AllowAnonymous]
         public ActionResult Detalhes(int id)
         {
-            Tutorial tutorial = sheetsDatabase.GetByID<Tutorial>(id);
+            Tutorial tutorial = _sheetsDatabase.GetByID<Tutorial>(id);
             return View(tutorial);
         }
 
@@ -51,7 +45,7 @@ namespace HustleCastle.Controllers
         // GET: TutorialsController/Edit/5
         public ActionResult Editar(int id)
         {
-            Tutorial tutorial = sheetsDatabase.GetByID<Tutorial>(id);
+            Tutorial tutorial = _sheetsDatabase.GetByID<Tutorial>(id);
             return View("Editar", tutorial);
         }
 
@@ -64,15 +58,15 @@ namespace HustleCastle.Controllers
                 if (tutorial.ID == 0)
                 {
                     tutorial.CreatedAt = DateTime.UtcNow.AddHours(-3).ToString();
-                    sheetsDatabase.Add<Tutorial>(tutorial);
-                    Audit audit = new Audit(User.Identity.Name,"Create",nameof(Tutorial),tutorial.Title);
-                    sheetsDatabase.Add<Audit>(audit);
+                    _sheetsDatabase.Add<Tutorial>(tutorial);
+                    Audit audit = new Audit(User.Identity.Name, "Create", nameof(Tutorial), tutorial.Title);
+                    _sheetsDatabase.Add<Audit>(audit);
                 }
                 else
                 {
-                    sheetsDatabase.Update<Tutorial>(tutorial);
+                    _sheetsDatabase.Update<Tutorial>(tutorial);
                     Audit audit = new Audit(User.Identity.Name, "Edit", nameof(Tutorial), tutorial.Title);
-                    sheetsDatabase.Add<Audit>(audit);
+                    _sheetsDatabase.Add<Audit>(audit);
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -84,9 +78,9 @@ namespace HustleCastle.Controllers
         // GET: TutorialsController/Delete/5
         public ActionResult Excluir(int id)
         {
-            sheetsDatabase.Delete<Tutorial>(id);
-            Audit audit = new Audit(User.Identity.Name, nameof(Excluir), nameof(Tutorial),id.ToString());
-            sheetsDatabase.Add<Audit>(audit);
+            _sheetsDatabase.Delete<Tutorial>(id);
+            Audit audit = new Audit(User.Identity.Name, nameof(Excluir), nameof(Tutorial), id.ToString());
+            _sheetsDatabase.Add<Audit>(audit);
             return RedirectToAction(nameof(Index));
         }
 

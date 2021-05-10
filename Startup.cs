@@ -1,3 +1,4 @@
+using HustleCastle.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,6 +31,10 @@ namespace HustleCastle
                     .AddCookie( x => {
                         x.LoginPath = "/Home/Login";
                     });
+            FileStream stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read);
+            services.AddSingleton<SheetsDatabase>(x =>  new SheetsDatabase("Teste", "1VKcGHaNzCU6dH9MNMEnlxfcb5sX7fM2t1G8OblestPg", stream));
+
+            //stream.Dispose();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
