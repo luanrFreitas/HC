@@ -114,8 +114,7 @@ namespace HustleCastle.Controllers
 
         public IActionResult Log()
         {
-
-            return Content("3");
+            return Content(DateTime.UtcNow.AddHours(-3).ToString());
         }
     }
 }
