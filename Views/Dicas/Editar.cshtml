@@ -34,60 +34,60 @@
 
 
 <script src="~/lib/ckeditor5/build/ckeditor.js"></script>
-<script>ClassicEditor
-			.create( document.querySelector( '.ckeditor' ), {
-
-				toolbar: {
-					items: [
-						'heading',
-						'|',
-						'undo',
-						'redo',
-						'bold',
-						'italic',
-						'underline',
-						'|',
-						'fontColor',
-						'fontBackgroundColor',
-						'fontFamily',
-						'fontSize',
-						'|',
-						'alignment',
-						'bulletedList',
-						'numberedList',
-						'|',
-						'blockQuote',
-						'link',
-						'insertTable',
-						'mediaEmbed'
-					]
-				},
-				language: 'pt-br',
-				table: {
-					contentToolbar: [
-						'tableColumn',
-						'tableRow',
-						'mergeTableCells'
-					]
-				},
-				licenseKey: '',
-
-
-			} )
-			.then( editor => {
-				window.editor = editor;
-
-
-
-
-
-
-
-
-			} )
-			.catch( error => {
-				console.error( 'Oops, something went wrong!' );
-				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-				console.warn( 'Build id: tmwf08m4jswx-1l10liszcq3o' );
-				console.error( error );
-			} );</script>
+<script>
+    ClassicEditor.create(document.querySelector('.ckeditor'), {
+        toolbar: {
+            items: [
+                'heading',
+                '|',
+                'undo',
+                'redo',
+                'bold',
+                'italic',
+                'underline',
+                'fontColor',
+                'fontFamily',
+                'fontSize',
+                'highlight',
+                '|',
+                'bulletedList',
+                'numberedList',
+                '|',
+                'blockQuote',
+                'link',
+                'insertTable',
+                'mediaEmbed',
+                '|',
+                'htmlEmbed',
+                'codeBlock'
+            ]
+        },
+        language: 'pt-br',
+        image: {
+            toolbar: [
+                'imageTextAlternative',
+                'imageStyle:full',
+                'imageStyle:side'
+            ]
+        },
+        table: {
+            contentToolbar: [
+                'tableColumn',
+                'tableRow',
+                'mergeTableCells',
+                'tableCellProperties',
+                'tableProperties'
+            ]
+        },
+        licenseKey: '',
+    })
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(error => {
+            console.error('Oops, something went wrong!');
+            console.error('Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:');
+            console.warn('Build id: xidq7nw7pv6k-haabvbvyar0q');
+            console.error(error);
+        });
+</script>
