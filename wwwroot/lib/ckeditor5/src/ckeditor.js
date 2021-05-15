@@ -5,11 +5,9 @@
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor.js';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment.js';
 import AutoImage from '@ckeditor/ckeditor5-image/src/autoimage.js';
-import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote.js';
+import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat.js';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold.js';
-import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock.js';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
-import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor.js';
 import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor.js';
 import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily.js';
 import FontSize from '@ckeditor/ckeditor5-font/src/fontsize.js';
@@ -27,6 +25,7 @@ import Link from '@ckeditor/ckeditor5-link/src/link.js';
 import List from '@ckeditor/ckeditor5-list/src/list.js';
 import ListStyle from '@ckeditor/ckeditor5-list/src/liststyle.js';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed.js';
+import MediaEmbedToolbar from '@ckeditor/ckeditor5-media-embed/src/mediaembedtoolbar.js';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table.js';
@@ -42,11 +41,9 @@ class Editor extends ClassicEditor {}
 Editor.builtinPlugins = [
 	Alignment,
 	AutoImage,
-	BlockQuote,
+	Autoformat,
 	Bold,
-	CodeBlock,
 	Essentials,
-	FontBackgroundColor,
 	FontColor,
 	FontFamily,
 	FontSize,
@@ -64,6 +61,7 @@ Editor.builtinPlugins = [
 	List,
 	ListStyle,
 	MediaEmbed,
+	MediaEmbedToolbar,
 	Paragraph,
 	PasteFromOffice,
 	Table,
