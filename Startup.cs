@@ -32,6 +32,9 @@ namespace HustleCastle
                     .AddCookie( x => {
                         x.LoginPath = "/Home/Login";
                     });
+            services.AddSingleton<IChatService, TelegramService>();
+            services.AddBotCommands();
+            services.AddHostedService<Bot>();
             FileStream stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read);
             services.AddSingleton<SheetsDatabase>(x =>  new SheetsDatabase("Teste", "1VKcGHaNzCU6dH9MNMEnlxfcb5sX7fM2t1G8OblestPg", stream));
 
